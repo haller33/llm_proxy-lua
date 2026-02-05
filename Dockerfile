@@ -73,13 +73,20 @@ RUN apk add --no-cache \
     bsd-compat-headers \
     libgcc
 
+RUN apk add --no-cache pcre2-dev
+
 RUN luarocks install cqueues \
-    && luarocks install luaossl
+    && luarocks install luaossl \
+    && luarocks install mime \
+    && luarocks install luabitop
 
 # Install the required Lua modules via LuaRocks
 RUN luarocks install http
 RUN luarocks install lua-cjson
+# RUN luarocks install pcre2
+# RUN luarocks install mime
 RUN luarocks install pgmoon
+
 
 # Set the working directory
 WORKDIR /app
