@@ -1,0 +1,16 @@
+services:
+  # The Lua Proxy
+  lua-proxy:
+    build: .
+    ports:
+      - "5000:5000"
+    restart: always
+    environment:
+      - DB_HOST=db
+      - DB_NAME=analytic_db
+      - DB_USER=admin
+      - DB_PASS=supersecret
+      - OLLAMA_URL=http://ollama:11434/api/generate
+
+volumes:
+  ollama_data:
